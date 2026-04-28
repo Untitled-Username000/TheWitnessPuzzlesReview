@@ -1,0 +1,32 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore Packages
+      run: nuget restore TheWitnessPuzzles.sln
+
+    - name: Build Desktop
+      run: msbuild "TWP Desktop/TWP Desktop.csproj" /p:Configuration=Release
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "TWP Desktop/bin/Windows/x86/Release/*"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
