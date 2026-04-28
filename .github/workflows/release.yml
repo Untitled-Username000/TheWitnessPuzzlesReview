@@ -4,6 +4,19 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version without the leading v, for example 1.0.13'
+        required: true
+        type: string
+      release_notes:
+        description: 'Release notes for the GitHub release'
+        required: true
+        type: string
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -22,11 +35,21 @@ jobs:
       run: nuget restore TheWitnessPuzzles.sln
 
     - name: Build Desktop
-      run: msbuild "TWP Desktop/TWP Desktop.csproj" /p:Configuration=Release
+      run: msbuild "TWP Desktop/TWP Desktop.csproj" /p:Configuration=Release /p:Platform=x86
+
+    - name: Build Android
+      run: msbuild "TWP Android/TWP Android.csproj" /p:Configuration=Release /p:Platform=AnyCPU
 
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        files: "TWP Desktop/bin/Windows/x86/Release/*"
+        tag_name: ${{ github.event_name == 'workflow_dispatch' && format('v{0}', inputs.version) || github.ref_name }}
+        name: ${{ github.event_name == 'workflow_dispatch' && format('v{0}', inputs.version) || github.ref_name }}
+        target_commitish: ${{ github.sha }}
+        body: ${{ github.event_name == 'workflow_dispatch' && inputs.release_notes || '' }}
+        generate_release_notes: ${{ github.event_name == 'push' }}
+        files: |
+          TWP Desktop/bin/Windows/x86/Release/*
+          TWP Android/bin/Android/AnyCPU/Release/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
