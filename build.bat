@@ -7,17 +7,20 @@ echo ============================================================
 echo.
 
 :: ── 1. Locate MSBuild via vswhere ──────────────────────────────────────────
+:: Capture %ProgramFiles(x86)% early - parentheses in the name break if/for parsing
+set "PF86=%ProgramFiles(x86)%"
+
 :: Check known locations in order of preference
 set "VSWHERE=D:\Programs\vsbuildtools\vswhere.exe"
 if not exist "%VSWHERE%" set "VSWHERE=C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
-if not exist "%VSWHERE%" set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+if not exist "%VSWHERE%" set "VSWHERE=%PF86%\Microsoft Visual Studio\Installer\vswhere.exe"
 if not exist "%VSWHERE%" set "VSWHERE=%ProgramFiles%\Microsoft Visual Studio\Installer\vswhere.exe"
 
 if not exist "%VSWHERE%" (
     echo [ERROR] vswhere.exe not found. Checked:
     echo   D:\Programs\vsbuildtools\vswhere.exe
     echo   C:\Program Files ^(x86^)\Microsoft Visual Studio\Installer\vswhere.exe
-    echo   %ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe
+    echo   %PF86%\Microsoft Visual Studio\Installer\vswhere.exe
     echo   %ProgramFiles%\Microsoft Visual Studio\Installer\vswhere.exe
     echo Please install Visual Studio Build Tools 2017 or later.
     goto :fail
