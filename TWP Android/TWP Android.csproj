@@ -118,7 +118,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\Splash.xml" />
   </ItemGroup>
-  <Import Project="..\TWP Shared\TWP Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\TWP Shared\TWP_Shared.csproj" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

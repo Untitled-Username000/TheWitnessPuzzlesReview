@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>TWP_Shared</RootNamespace>
+    <AssemblyName>TWP_Shared</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TWPBaseLib\TWPBaseLib.csproj.sdk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TWPGame.cs" />
+    <Compile Include="Animations\FadeInAnimation.cs" />
+    <Compile Include="Animations\FadeOutAnimation.cs" />
+    <Compile Include="Animations\FadeTransition.cs" />
+    <Compile Include="BloomFX\BloomFilter.cs" />
+    <Compile Include="BloomFX\QuadRenderer.cs" />
+    <Compile Include="GameScreens\AboutGameScreen.cs" />
+    <Compile Include="GameScreens\ConfirmSeedResetGameScreen.cs" />
+    <Compile Include="GameScreens\EditorGameScreen.cs" />
+    <Compile Include="GameScreens\EnterSeedGameScreen.cs" />
+    <Compile Include="GameScreens\ExtraSettingsGameScreen.cs" />
+    <Compile Include="GameScreens\GameScreen.cs" />
+    <!-- ...other GameScreens... -->
+    <Compile Include="GUI Elements\AbstractButton.cs" />
+    <!-- ...other GUI Elements... -->
+    <Compile Include="Panel Generators\BasePanelGenerator.cs" />
+    <!-- ...other Panel Generators... -->
+    <Compile Include="Support Classes\ColorPalettesLibrary.cs" />
+    <!-- ...other Support Classes... -->
+    <Compile Include="Content\Content.mgcb" />
+  </ItemGroup>
+</Project>

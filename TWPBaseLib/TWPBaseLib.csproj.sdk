@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>TheWitnessPuzzles</RootNamespace>
+    <AssemblyName>TWPBaseLib</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Block.cs" />
+    <Compile Include="BlockRule.cs" />
+    <Compile Include="IColorable.cs" />
+    <Compile Include="Edge.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="IErrorable.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="Puzzle.cs" />
+    <Compile Include="Sector.cs" />
+    <Compile Include="SymmetryPuzzle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+</Project>
+

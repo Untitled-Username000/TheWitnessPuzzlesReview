@@ -45,6 +45,16 @@ It has to be noted though that _**figuring out what those rules are in the first
 - `TWPVisualizer` – this is more of a legacy project, where i tested BaseLib functionality. Should not be used. GUI totally is not foolproof.
 
 
+## Quick Start
+
+1. Run `install.bat` to check/install prerequisites (.NET 6 SDK, Android SDK for Android build).
+2. Run `build.bat` to build both Desktop and Android projects (outputs in respective bin/Release folders).
+
+- For Desktop: .NET 6+ is required. Output is in `TWP Desktop\bin\Release\net6.0-windows\`.
+- For Android: Android SDK and .NET 6+ are required. Output is in `TWP Android\bin\Release\net6.0-android\`.
+
+---
+
 ## Disclaimer
 Sound effects i used are extracted sounds from the original The Witness that i found on the Internet. I do not own these assets, all rights to them belong to Jonathan Blow and Thekla Inc.  
 All rights to The Witness belong to Jonathan Blow and Thekla Inc.
