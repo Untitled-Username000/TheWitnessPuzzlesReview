@@ -106,12 +106,7 @@
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TWPBaseLib\TWPBaseLib.csproj">
-      <Project>{020ddb66-91a9-4a86-b466-5f4812081540}</Project>
-      <Name>TWPBaseLib</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <!-- Legacy ProjectReference removed: use SDK-style project only -->
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Colors.xml" />
   </ItemGroup>
@@ -121,8 +116,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TWP Shared\TWP_Shared.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- Removed legacy Novell and MonoGame Content Builder imports for SDK-style migration -->
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

@@ -1,0 +1,9 @@
+    1  dotnet clean
+    2  dotnet workload restore
+    3  dotnet build --no-restore
+    4  dotnet build 
+    5  dotnet build "TWP Desktop/TWP_Desktop.csproj"
+    6  chmod +x scripts/install_android_sdk.sh
+    7  chmod +x scripts/install_android_sdk.sh
+    8  ./scripts/install_android_sdk.sh
+    9  history

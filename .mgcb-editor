@@ -1,0 +1,3 @@
+# MGCB Editor global tool config
+# This file is a placeholder to indicate MGCB Editor should be installed as a .NET global tool.
+# Install with: dotnet tool install --global dotnet-mgcb

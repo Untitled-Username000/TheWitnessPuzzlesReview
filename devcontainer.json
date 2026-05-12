@@ -1,0 +1,9 @@
+{
+  "name": "TheWitnessPuzzles Cross-Platform DevContainer",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:8.0",
+  "features": {
+    "ghcr.io/devcontainers/features/android:1": {},
+    "ghcr.io/devcontainers/features/dotnet:1": {}
+  },
+  "postCreateCommand": "dotnet tool restore || dotnet tool install --global dotnet-mgcb"
+}

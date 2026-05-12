@@ -79,12 +79,12 @@ namespace TWP_Shared
                     {
                         index = rnd.Next(maxNodeID + 1);
                         acceptable = !startPoints.Contains(index);
-                        acceptable = acceptable && !(symmetry && index == GetMirrorNodeID(index));
+                        acceptable = acceptable && !(symmetry && index == GetMirrorNodeID(index, ySymmetry, maxNodeID, width1, panelWidth));
                     }
                     while (!acceptable);
                     startPoints.Add(index);
                     if (symmetry)
-                        startPoints.Add(GetMirrorNodeID(index));
+                        startPoints.Add(GetMirrorNodeID(index, ySymmetry, maxNodeID, width1, panelWidth));
                 }
                 foreach (int start in startPoints)
                     panel.Nodes[start].SetState(NodeState.Start);
@@ -94,7 +94,7 @@ namespace TWP_Shared
                 int endPointsAmount = symmetry
                     ? num > 0.88 ? 2 : 1
                     : num > 0.75 ? (num > 0.91 ? (num > 0.99 ? 4 : 3) : 2) : 1;
-                List<int> borderNodes = GetBorderNodes();
+                List<int> borderNodes = GetBorderNodes(width1, panelHeight, panelWidth);
                 for (int i = 0; i < endPointsAmount; i++)
                 {
                     int index;
@@ -104,12 +104,12 @@ namespace TWP_Shared
                         index = rnd.Next(borderNodes.Count);
                         acceptable = !startPoints.Contains(borderNodes[index]);
                         acceptable = acceptable && !endPoints.Contains(borderNodes[index]);
-                        acceptable = acceptable && !(symmetry && borderNodes[index] == GetMirrorNodeID(borderNodes[index]));
+                        acceptable = acceptable && !(symmetry && borderNodes[index] == GetMirrorNodeID(borderNodes[index], ySymmetry, maxNodeID, width1, panelWidth));
                     }
                     while (!acceptable);
                     endPoints.Add(borderNodes[index]);
                     if (symmetry)
-                        endPoints.Add(GetMirrorNodeID(borderNodes[index]));
+                        endPoints.Add(GetMirrorNodeID(borderNodes[index], ySymmetry, maxNodeID, width1, panelWidth));
                 }
                 foreach (int end in endPoints)
                     panel.Nodes[end].SetState(NodeState.Exit);
@@ -122,9 +122,9 @@ namespace TWP_Shared
                     int startNodeX = startPoint % width1;
                     int endNodeX = endPoint % width1;
                     if (Math.Sign(lineOfSymmetry - startNodeX) != Math.Sign(lineOfSymmetry - endNodeX))
-                        endPoint = GetMirrorNodeID(endPoint);
+                        endPoint = GetMirrorNodeID(endPoint, ySymmetry, maxNodeID, width1, panelWidth);
                 }
-                List<int> randomSolution = GetRandomSolutionLine(startPoint, endPoint);
+                List<int> randomSolution = GetRandomSolutionLine(startPoint, endPoint, symmetry, ySymmetry, maxNodeID, width1, panelWidth, panelHeight);
                 panel.SetSolution(randomSolution);
                 var allSolutionNodes = panel.SolutionNodes.ToList();
                 var allSolutionEdges = panel.SolutionEdges.ToList();
@@ -202,14 +202,14 @@ namespace TWP_Shared
                 // ...existing code for eliminators...
             }
             // --- Helper methods (copied from below for context) ---
-            int GetMirrorNodeID(int nodeID)
+            int GetMirrorNodeID(int nodeID, bool ySymmetry, int maxNodeID, int width1, int panelWidth)
             {
                 if (ySymmetry)
                     return maxNodeID - nodeID;
                 else
                     return (nodeID / width1 * width1) * 2 + panelWidth - nodeID;
             }
-            List<int> GetBorderNodes()
+            List<int> GetBorderNodes(int width1, int panelHeight, int panelWidth)
             {
                 List<int> res = new List<int>();
                 for (int i = 0; i < width1; i++)
@@ -218,7 +218,7 @@ namespace TWP_Shared
                             res.Add(j * width1 + i);
                 return res;
             }
-            List<int> GetRandomSolutionLine(int startNode, int endNode)
+            List<int> GetRandomSolutionLine(int startNode, int endNode, bool symmetry, bool ySymmetry, int maxNodeID, int width1, int panelWidth, int panelHeight)
             {
                 // This is the solution line
                 List<int> line = new List<int>();
@@ -233,7 +233,7 @@ namespace TWP_Shared
                 {
                     line.Add(nodeID);
                     if (symmetry)
-                        mirrorLine.Add(GetMirrorNodeID(nodeID));
+                        mirrorLine.Add(GetMirrorNodeID(nodeID, ySymmetry, maxNodeID, width1, panelWidth));
                 }
                 void RemoveLastNodeFromSolution()
                 {
@@ -246,7 +246,7 @@ namespace TWP_Shared
                     IEnumerable<int> neighbours = GetNodeNeighbours(nodeID);
                     neighbours = neighbours.Except(line).Except(mirrorLine);
                     if (symmetry)
-                        neighbours = neighbours.Where(x => x != GetMirrorNodeID(x));
+                        neighbours = neighbours.Where(x => x != GetMirrorNodeID(x, ySymmetry, maxNodeID, width1, panelWidth));
                     return neighbours.ToList();
                 }
                 List<int> GetNodeNeighbours(int nodeID)

@@ -1,21 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-android</TargetFramework>
+    <TargetFramework>net9.0-android</TargetFramework>
+    <NoWarn>$(NoWarn);NETSDK1202</NoWarn>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
     <RootNamespace>TWP_Android</RootNamespace>
     <AssemblyName>TWP_Android</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <ApplicationId>com.example.twpandroid</ApplicationId>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TWPBaseLib\TWPBaseLib.csproj.sdk" />
-    <ProjectReference Include="..\TWP Shared\TWP_Shared.csproj" />
+    <ProjectReference Include="..\TWPBaseLib\TWPBaseLib.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.1.303" />
     <PackageReference Include="Xamarin.Legacy.OpenTK" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TWP Shared\**\*.cs" Exclude="..\TWP Shared\obj\**;..\TWP Shared\bin\**" />
     <Compile Include="ActivityMain.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

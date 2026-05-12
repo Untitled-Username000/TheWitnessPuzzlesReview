@@ -81,11 +81,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TWPBaseLib\TWPBaseLib.csproj">
-      <Project>{020DDB66-91A9-4A86-B466-5F4812081540}</Project>
-      <Name>TWPBaseLib</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <!-- Legacy ProjectReference removed: use SDK-style project only -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

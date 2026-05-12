@@ -6,28 +6,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TWPBaseLib\TWPBaseLib.csproj.sdk" />
+    <ProjectReference Include="..\TWPBaseLib\TWPBaseLib.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="TWPGame.cs" />
-    <Compile Include="Animations\FadeInAnimation.cs" />
-    <Compile Include="Animations\FadeOutAnimation.cs" />
-    <Compile Include="Animations\FadeTransition.cs" />
-    <Compile Include="BloomFX\BloomFilter.cs" />
-    <Compile Include="BloomFX\QuadRenderer.cs" />
-    <Compile Include="GameScreens\AboutGameScreen.cs" />
-    <Compile Include="GameScreens\ConfirmSeedResetGameScreen.cs" />
-    <Compile Include="GameScreens\EditorGameScreen.cs" />
-    <Compile Include="GameScreens\EnterSeedGameScreen.cs" />
-    <Compile Include="GameScreens\ExtraSettingsGameScreen.cs" />
-    <Compile Include="GameScreens\GameScreen.cs" />
-    <!-- ...other GameScreens... -->
-    <Compile Include="GUI Elements\AbstractButton.cs" />
-    <!-- ...other GUI Elements... -->
-    <Compile Include="Panel Generators\BasePanelGenerator.cs" />
-    <!-- ...other Panel Generators... -->
-    <Compile Include="Support Classes\ColorPalettesLibrary.cs" />
-    <!-- ...other Support Classes... -->
-    <Compile Include="Content\Content.mgcb" />
-  </ItemGroup>
+  <!-- Removed explicit Compile Include entries; SDK-style project includes all .cs files by default. -->
 </Project>

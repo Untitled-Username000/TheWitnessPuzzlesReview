@@ -29,13 +29,36 @@ It has to be noted though that _**figuring out what those rules are in the first
 **A:** Library stores last 12 solved panels on the first tab, last 12 skipped panels on the second tab and all your saved panels on the last tab (up to 1000 actually). You can save the panel you liked with the heart button ❤. You can replay any panel from the Library later.
 
 
-## Technologies and stuff
-- .NET Framework 4.7 and C# 7.0
-- [MonoGame Framework 3.6](http://www.monogame.net)
-- Slightly modified [BloomFilter for Monogame and XNA](https://github.com/Kosmonaut3d/BloomFilter-for-Monogame-and-XNA) shader by Kosmonaut3d
-- You'll need `Mobile development with .NET` workload (namely `Xamarin`) as well as `Android NDK (R13B)` component in your Visual Studio in order to compile Android project
-- [Roboto font](https://fonts.google.com/specimen/Roboto) has to be installed in the system in order to compile MonoGame resources
+
+## Technologies and Modern Build Setup
+- .NET 6+ SDK (cross-platform, use `dotnet` CLI)
+- [MonoGame Framework (latest)](http://www.monogame.net) (install MGCB as .NET global tool)
+- [BloomFilter for Monogame and XNA](https://github.com/Kosmonaut3d/BloomFilter-for-Monogame-and-XNA) shader by Kosmonaut3d
+- Android SDK/NDK (install via [command line tools](https://developer.android.com/studio#command-tools) or Codespaces automation)
+- Roboto font (auto-downloaded by script or included in repo)
 - Target Android SDK: API level 25
+
+### 🚀 Cross-Platform & Codespaces Quick Start
+
+1. Open in [GitHub Codespaces](https://github.com/features/codespaces) or VS Code with Dev Containers.
+2. The environment will auto-install .NET SDK, Android SDK/NDK, and MGCB tool.
+3. Run `dotnet tool restore` (or `dotnet tool install --global dotnet-mgcb` if needed).
+4. Run `./scripts/download_roboto.sh` to fetch the Roboto font if not present.
+5. Build with `dotnet build` for Desktop and Android projects.
+
+**Manual setup:**
+- Install .NET 6+ SDK: https://dotnet.microsoft.com/download
+- Install MonoGame MGCB tool: `dotnet tool install --global dotnet-mgcb`
+- Download and extract Android SDK/NDK: https://developer.android.com/studio#command-tools
+- Run `./scripts/download_roboto.sh` to fetch the Roboto font.
+
+**Outputs:**
+- Desktop: `TWP Desktop/bin/Release/net6.0-windows/`
+- Android: `TWP Android/bin/Release/net6.0-android/`
+
+**No manual install steps required in Codespaces or with devcontainer.**
+
+---
 
 ## Solution structure
 - `TWP Android` – Android build project, contains only main activity and configurations.

@@ -79,10 +79,7 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TWPBaseLib\TWPBaseLib.csproj">
-      <Project>{020ddb66-91a9-4a86-b466-5f4812081540}</Project>
-      <Name>TWPBaseLib</Name>
-    </ProjectReference>
+    <!-- Legacy ProjectReference removed: use SDK-style project only -->
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -99,7 +96,7 @@
     <ProjectReference Include="..\TWP Shared\TWP_Shared.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- Removed legacy MonoGame Content Builder import for SDK-style migration -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

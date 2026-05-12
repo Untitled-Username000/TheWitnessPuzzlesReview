@@ -1,29 +1,31 @@
 ---
-title: TheWitnessPuzzlesReview
+title: TheWitnessPuzzles Build Modernization
 ---
 
 # APM Tracker
 
 ## Task Tracking
 
+
 **Stage 1:**
 
 | Task | Status | Agent | Branch |
 |------|--------|-------|--------|
-| 1.1 | Done | generator-worker | |
+| Implement check_tools.bat | Not Started | build-modernizer | feat/check-tools |
+| Implement build.bat | Not Started | build-modernizer | feat/build-script |
+| Migrate to SDK-style projects and automate environment setup (devcontainer, scripts) | Not Started | build-modernizer | feat/crossplatform-modernization |
 
 ## Worker Tracking
 
 | Agent | Instance | Notes |
-|-------|----------|-------|
+|--------|----------|-------|
+| build-modernizer | uninitialized | |
 
 ## Version Control
 
 | Repository | Base Branch | Branch Convention | Commit Convention |
-|-----------|-------------|-------------------|-------------------|
-| TheWitnessPuzzlesReview | master | direct-to-master | summary-style |
+|------------|-------------|-------------------|-------------------|
+| TheWitnessPuzzles | master | feat/short-description | type: description |
 
 ## Working Notes
 
-- User prefers direct commits to master if things work; no feature branches needed.
-- .apm/ is currently untracked and should remain so unless otherwise specified.
