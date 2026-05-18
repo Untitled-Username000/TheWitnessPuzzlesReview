@@ -18,6 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\TWP Shared\**\*.cs" Exclude="..\TWP Shared\obj\**;..\TWP Shared\bin\**" />
@@ -28,6 +29,14 @@
     <Content Include="Icon.ico" />
     <None Include="app.config" />
     <None Include="app.manifest" />
+    <!-- Reference the shared content project mgcb so the MonoGame content task will build it. -->
+    <MonoGameContentReference Include="..\TWP Shared\Content\Content.mgcb">
+      <ContentFolder>Content</ContentFolder>
+    </MonoGameContentReference>
+  </ItemGroup>
+  <!-- Watch shared content files so `dotnet watch` rebuilds when assets change -->
+  <ItemGroup>
+    <Watch Include="..\TWP Shared\Content\**\*.*" />
   </ItemGroup>
 </Project>
 

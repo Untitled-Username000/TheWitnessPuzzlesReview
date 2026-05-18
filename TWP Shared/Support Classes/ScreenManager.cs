@@ -168,6 +168,20 @@ namespace TWP_Shared
             foreach (string fontName in fontsToLoad)
                 FontProvider.Add(fontName, Content.Load<SpriteFont>(fontName));
         }
+        public void ReloadContent()
+        {
+            try
+            {
+                foreach (var tex in TextureProvider.Values)
+                    tex?.Dispose();
+            }
+            catch { }
+
+            TextureProvider.Clear();
+            FontProvider.Clear();
+            try { Content.Unload(); } catch { }
+            LoadContent();
+        }
         public void Update(GameTime gameTime)
         {
             CurrentScreen?.Update(gameTime);

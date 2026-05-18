@@ -1,0 +1,20 @@
+Ran these this sessions
+
+
+dotnet build "./TWP Desktop/TWP_Desktop.csproj"
+.\build.bat
+DOTNET_CLI_UI_LANGUAGE=en-US
+set DOTNET_CLI_UI_LANGUAGE=en-US
+Get-History | Select-Object -Last 100`
+
+(Get-PSReadLineOption).HistorySavePath`
+Get-Content (Get-PSReadLineOption).HistorySavePath | Select-Object -Last 200`
+
+cd '.\TWP Desktop\'
+dotnet watch run
+dotnet watch
+dotnet watch run --project TWP_Desktop.csproj
+(Get-PSReadLineOption).HistorySavePath`
+Get-Content (Get-PSReadLineOption).HistorySavePath | Select-Object -Last 200`
+
+Reverted panel generator back to original of original repository, AI rewrites suck

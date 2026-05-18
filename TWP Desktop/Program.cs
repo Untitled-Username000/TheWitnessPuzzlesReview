@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using TWP_Shared;
 
 namespace TWP_Desktop
@@ -15,8 +16,17 @@ namespace TWP_Desktop
         [STAThread]
         static void Main()
         {
-            using (var game = new TWPGame())
-                game.Run();
+            try
+            {
+                using (var game = new TWPGame())
+                    game.Run();
+            }
+            catch (Exception ex)
+            {
+#if WINDOWS
+                MessageBox.Show(ex.ToString(), "The Witness Puzzles failed to start", MessageBoxButtons.OK, MessageBoxIcon.Error);
+#endif
+            }
         }
     }
 #endif

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using TWP_Shared;
@@ -19,6 +20,7 @@ namespace TWP_Shared
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Point defaultScreenSize = new Point(800, 480);
+        HotReloadService hotReloadService;
 
         public TWPGame()
         {
@@ -199,6 +201,19 @@ namespace TWP_Shared
             SoundManager.LoadContent(Content);
 
             InitializeAfterContentIsLoaded();
+
+            try
+            {
+                string contentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content");
+                hotReloadService = new HotReloadService(contentPath);
+                hotReloadService.OnFileChanged += (file) =>
+                {
+                    // Called on game thread from ProcessPending. Reload content and sounds.
+                    ScreenManager.Instance.ReloadContent();
+                    try { SoundManager.LoadContent(Content); } catch { }
+                };
+            }
+            catch { }
         }
 
         protected virtual void InitializeAfterContentIsLoaded()
@@ -243,6 +258,7 @@ namespace TWP_Shared
             //    ScreenManager.Instance.AddScreen<PanelGameScreen>(true, true, DI.Get<PanelGenerator>().GeneratePanel());
 
             ScreenManager.Instance.Update(gameTime);
+            hotReloadService?.ProcessPending();
             InputManager.Update();
             base.Update(gameTime);
         }
